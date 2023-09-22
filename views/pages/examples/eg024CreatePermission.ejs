@@ -1,0 +1,18 @@
+<%- include("../../partials/examplesHead") %>
+
+<%- include("../../partials/exampleInfo") %>
+
+<form class="eg" action="" method="post" data-busy="form">
+    <% if(example.Forms && example.Forms[0].FormName) { %>
+      <%- example.Forms[0].FormName %>
+    <% } %>
+    
+    <div class="form-group">
+        <label for="profileName"><%= example.Forms[0].Inputs[0].InputName %></label>
+        <input type="profileName" class="form-control" id="profileName" name="profileName">
+    </div>
+    <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+    <%- include("../../partials/submitButton") %>
+</form>
+
+<%- include("../../partials/examplesFoot") %>

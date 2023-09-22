@@ -1,0 +1,34 @@
+<%- include("../../partials/examplesHead") %>
+
+<%- include("../../partials/exampleInfo") %>
+
+<% include("../../partials/functions") %>
+
+<form class="eg" action="" method="post" data-busy="form">
+    <% if (formGroups && formGroups.length > 0) { %>
+        <% if(example.Forms && example.Forms[0].FormName) { %>
+          <%- example.Forms[0].FormName %>
+        <% } %>
+        
+        <div class="form-group">
+            <label for="officeId"><%= example.Forms[0].Inputs[0].InputName %></label>
+            <select id="officeId" name="officeId" class="form-control">
+                <% offices.forEach( office => { %>
+                    <option value="<%= office.officeId %>"> <%= office.name %> </option>
+                <% }) %>
+            </select>
+            <label for="formGroupId"><%= example.Forms[0].Inputs[1].InputName %></label>
+            <select id="formGroupId" name="formGroupId" class="form-control">
+                <% formGroups.forEach( formGroup => { %>
+                    <option value="<%= formGroup.formGroupId %>"> <%= formGroup.name %> </option>
+                <% }) %>
+            </select>
+        </div>
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+        <%- include("../../partials/submitButton") %>
+    <% } else { %>
+        <%- formatString(example.RedirectsToOtherCodeExamples[0].RedirectText, formatString('href="reg00{0}"', example.RedirectsToOtherCodeExamples[0].CodeExampleToRedirectTo)) %>
+    <% } %>
+</form>
+
+<%- include("../../partials/examplesFoot") %>

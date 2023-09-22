@@ -1,0 +1,23 @@
+<%- include("../partials/genericHead") %>
+
+<h2><%= title %></h2>
+<p><%- message %></p>
+
+<% if (locals.json) { %>
+  <!-- Data from the server -->
+  <div id="server_json_data" data-server-json-data='{"json":<%- JSON.stringify(json) %>}' class="hidden"></div>
+  <p><pre class="json-display"><code id="json-display"></code></pre></p>
+<% } %>
+
+<% if (locals.checkStatus) { %>
+  <p><a href="eg004status">Check the request status</a></p>
+<% } %>
+
+<% if (locals.redirectUrl) { %>
+  <p><a href="<%= locals.redirectUrl %>">Continue</a></p>
+<% } else { %>
+  <p><a href="/">Continue</a></p>
+<% } %>
+
+
+<%- include("../partials/genericFoot") %>

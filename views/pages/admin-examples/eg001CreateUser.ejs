@@ -1,0 +1,61 @@
+<%- include("../../partials/examplesHead") %>
+
+<%- include("../../partials/exampleInfo") %>
+
+<form class="eg" action="" method="post" data-busy="form">
+    <% if(example.Forms && example.Forms[0].FormName) { %>
+      <%- example.Forms[0].FormName %>
+    <% } %>
+    
+    <div class="form-group">
+      <label for="user_name"><%= example.Forms[0].Inputs[0].InputName %></label>
+      <input type="text" class="form-control" id="user_name" name="user_name"
+             placeholder="<%= example.Forms[0].Inputs[0].InputPlaceholder %>" required>
+    </div>
+    <div class="form-group">
+      <label for="first_name"><%= example.Forms[0].Inputs[1].InputName %></label>
+      <input type="text" class="form-control" id="first_name" placeholder="<%= example.Forms[0].Inputs[1].InputPlaceholder %>"
+             name="first_name" required>
+    </div>
+    <div class="form-group">
+      <label for="last_name"><%= example.Forms[0].Inputs[2].InputName %></label>
+      <input type="text" class="form-control" id="last_name" placeholder="<%= example.Forms[0].Inputs[2].InputPlaceholder %>"
+             name="last_name" required>
+    </div>
+    <div class="form-group">
+      <label for="email"><%= example.Forms[0].Inputs[3].InputName %></label>
+      <input type="email" class="form-control" id="email" name="email"
+             aria-describedby="emailHelp" placeholder="<%= example.Forms[0].Inputs[3].InputPlaceholder %>" required>
+      <small id="emailHelp" class="form-text text-muted"><%= locals.manifest.SupportingTexts.HelpingTexts.EmailWontBeShared %></small>
+    </div>
+    <% if (permissionProfiles && permissionProfiles.length > 0) { %>
+        <div class="form-group">
+            <label for="permissionProfileId"><%= example.Forms[0].Inputs[4].InputName %></label>
+            <select id="permissionProfileId" name="permissionProfileId" class="form-control">
+                <% permissionProfiles.forEach( profile => { %>
+                    <option value="<%= profile.permissionProfileId%>"> <%= profile.permissionProfileName %> </option>
+                <% }) %>
+            </select>
+        </div>
+    <% } else { %>
+        <p>Problem: Please first create a DocuSign permission profile.</a>
+            </br>Thank you.</p>
+    <% } %>
+    <% if (groups && groups.length > 0) { %>
+        <div class="form-group">
+            <label for="groupId"><%= example.Forms[0].Inputs[5].InputName %></label>
+            <select id="groupId" name="groupId" class="form-control">
+                <% groups.forEach( group => { %>
+                    <option value="<%= group.groupId%>"> <%= group.groupName %> </option>
+                <% }) %>
+            </select>
+        </div>
+    <% } else { %>
+        <p>Problem: Please first create an eSignature group.</a>
+            </br>Thank you.</p>
+    <% } %>
+    <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+    <%- include("../../partials/submitButton") %>
+</form>
+
+<%- include("../../partials/examplesFoot") %>

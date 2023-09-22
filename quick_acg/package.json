@@ -1,0 +1,43 @@
+{
+  "name": "docusign-code-examples-quick-acg",
+  "version": "1.0.0",
+  "description": "DocuSign eSignature Code example using either Authorization Code Grant",
+  "main": "quickACG.js",
+  "scripts": {
+    "test": "run-script-os",
+    "test:win32": "(if exist node_modules/ (cd ../ && remove-node-modules && move quick_acg/node_modules ./))",
+    "test:default": "[ ! -d 'node_modules' ] || (rm -rf ../node_modules && mv -f node_modules ../)",
+    "start": "npm test && node quickACG.js"
+  },
+  "author": "DocuSign, Inc",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.10"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
+    "docusign-esign": "^6.1.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.3",
+    "fs": "0.0.1-security",
+    "fs-extra": "^11.1.0",
+    "helmet": "^3.23.3",
+    "memorystore": "^1.6.7",
+    "moment": "^2.29.4",
+    "passport": "^0.6.0",
+    "passport-docusign": "^1.3.0",
+    "path": "^0.12.7",
+    "run-script-os": "^1.1.6",
+    "remove-node-modules": "^1.7.6",
+    "validator": "^13.9.0",
+    "node-fetch": "2.6.9"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  }
+}

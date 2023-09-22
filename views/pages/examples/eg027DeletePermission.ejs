@@ -1,0 +1,32 @@
+<%- include("../../partials/examplesHead") %>
+
+<%- include("../../partials/exampleInfo") %>
+
+<% include("../../partials/functions") %>
+
+<% if (profiles.length == 0) { %>
+    <%- formatString(example.RedirectsToOtherCodeExamples[0].RedirectText, formatString('href="eg0{0}"', example.RedirectsToOtherCodeExamples[0].CodeExampleToRedirectTo)) %>
+
+<form class="eg" action="eg024" method="get">
+    <%- include("../../partials/continueButton") %>
+</form>
+<% } else { %>
+<form class="eg" action="" method="post" data-busy="form">
+    <% if(example.Forms && example.Forms[0].FormName) { %>
+      <%- example.Forms[0].FormName %>
+    <% } %>
+    
+    <div class="form-group">
+        <label for="profiles"><%= example.Forms[0].Inputs[0].InputName %></label>
+        <select id="profileId" name="profileId" class="form-control">
+            <% profiles.forEach( profile => { %>
+            <option value="<%= profile.permissionProfileId %>" selected> <%= profile.permissionProfileName %> </option>
+            <% }) %>
+        </select>
+    </div>
+    <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+    <%- include("../../partials/submitButton") %>
+</form>
+<% } %>
+
+<%- include("../../partials/examplesFoot") %>

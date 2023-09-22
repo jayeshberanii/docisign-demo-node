@@ -1,0 +1,29 @@
+<h4><%= example.ExampleName %></h4>
+
+<p><%- example.ExampleDescription %></p>
+
+<%- include("docBody") %>
+
+<% if(example.Note) { %>
+    <%- example.Note %>
+<% } %>
+
+<p>
+  <% if (example.LinksToAPIMethod.length > 1) { %>
+    <%= locals.manifest.SupportingTexts.APIMethodUsedPlural %>
+  <% } else { %>
+    <%= locals.manifest.SupportingTexts.APIMethodUsed %>
+  <% } %>
+
+  <% for (var i = 0; i < example.LinksToAPIMethod.length; i++) {%>
+    <% if (i + 1 == example.LinksToAPIMethod.length - 1) { %>
+      <a target='_blank' href="<%= example.LinksToAPIMethod[i].Path %>"><%= example.LinksToAPIMethod[i].PathName %></a>, and
+    <% } else if (i == example.LinksToAPIMethod.length - 1) { %>
+      <a target='_blank' href="<%= example.LinksToAPIMethod[i].Path %>"><%= example.LinksToAPIMethod[i].PathName %></a>
+    <% } else { %>
+      <a target='_blank' href="<%= example.LinksToAPIMethod[i].Path %>"><%= example.LinksToAPIMethod[i].PathName %></a>,
+    <% } %>
+  <% } %>
+</p>
+
+<%- include("gitSource") %>

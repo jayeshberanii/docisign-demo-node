@@ -1,0 +1,69 @@
+<%- include("../../partials/examplesHead") %>
+
+<%- include("../../partials/exampleInfo") %>
+
+<% if (templateOk) { %>
+  <form class="eg" action="" method="post" data-busy="form">
+    <% if(example.Forms && example.Forms[0].FormName) { %>
+      <%- example.Forms[0].FormName %>
+    <% } %>
+    
+    <div class="form-group">
+      <label for="signerEmail"><%= example.Forms[0].Inputs[0].InputName %></label>
+      <input type="email" class="form-control" id="signerEmail" name="signerEmail"
+            aria-describedby="emailHelp" placeholder="<%= example.Forms[0].Inputs[0].InputPlaceholder %>" required
+            value="<%= locals.dsConfig.signerEmail %>">
+      <small id="emailHelp" class="form-text text-muted"><%= locals.manifest.SupportingTexts.HelpingTexts.EmailWontBeShared %></small>
+    </div>
+    <div class="form-group">
+      <label for="signerName"><%= example.Forms[0].Inputs[1].InputName %></label>
+      <input type="text" class="form-control" id="signerName" placeholder="<%= example.Forms[0].Inputs[1].InputPlaceholder %>" name="signerName"
+            value="<%= locals.dsConfig.signerName %>" required>
+    </div>
+    <div class="form-group">
+        <label for="ccEmail"><%= example.Forms[0].Inputs[2].InputName %></label>
+        <input type="email" class="form-control" id="ccEmail" name="ccEmail"
+              aria-describedby="emailHelp" placeholder="<%= example.Forms[0].Inputs[2].InputPlaceholder %>" required
+      <small id="emailHelp" class="form-text text-muted"><%= locals.manifest.SupportingTexts.HelpingTexts.CCEmailShouldDifferFromSigner %></small>
+    </div>
+    <div class="form-group">
+      <label for="ccName"><%= example.Forms[0].Inputs[3].InputName %></label>
+      <input type="text" class="form-control" id="ccName" placeholder="<%= example.Forms[0].Inputs[3].InputPlaceholder %>" name="ccName"
+            required>
+    </div>
+    <div class="form-group">
+      <label for="item"><%= example.Forms[0].Inputs[4].InputName %></label>
+      <select id="item" name="item" class="form-control">
+        <option>Apples</option>
+        <option selected>Avocados</option>
+        <option>Oranges</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="quantity"><%= example.Forms[0].Inputs[5].InputName %></label>
+      <select id="quantity" name="quantity" class="form-control">
+        <option>10</option>
+        <option selected>20</option>
+        <option>30</option>
+        <option>40</option>
+        <option>50</option>
+        <option>60</option>
+        <option>70</option>
+        <option>80</option>
+        <option>90</option>
+        <option>100</option>
+      </select>
+    </div>    
+    <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+    <%- include("../../partials/submitButton") %>
+  </form>
+  
+<% } else { %>
+  <%- formatString(example.RedirectsToOtherCodeExamples[0].RedirectText, formatString('href="eg00{0}"', example.RedirectsToOtherCodeExamples[0].CodeExampleToRedirectTo)) %>
+      
+  <form class="eg" action="eg008" method="get">
+      <%- include("../../partials/continueButton") %>
+  </form>
+<% } %>
+    
+<%- include("../../partials/examplesFoot") %>

@@ -1,0 +1,11 @@
+
+<% if (showDoc) { %>
+<p><a target='_blank' href='<%= documentation %>'>Documentation</a> on using OAuth Authorization Code Grant and JWT from
+   a Node Express application.</p>
+<% } %>
+
+<% if (locals.dsConfig.multiSourceChooser) { %>
+<h3 class="mt-4">Rooms API Code Examples for C#, PHP, Java, Node.js, Python, and Curl</h3>
+<% } %>
+
+<%- include("index_rooms_examples_list") %>
