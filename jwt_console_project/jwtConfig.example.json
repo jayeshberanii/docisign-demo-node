@@ -1,6 +1,0 @@
-{
-  "dsJWTClientId": "{INTEGRATION_KEY_JWT}",
-  "impersonatedUserGuid": "{IMPERSONATED_USER_ID}",
-  "privateKeyLocation":  "./private.key",
-  "dsOauthServer": "https://account-d.docusign.com"
-}
